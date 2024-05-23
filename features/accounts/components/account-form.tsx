@@ -32,10 +32,11 @@ type Props={
 export const AccountForm =({
     id,
     defaultVlaues,
-    onSubmit,onDelete,
+    onSubmit,
+    onDelete,
     disabled,
 }:Props)=>{
-    const form =useForm<FormValues>({
+    const form = useForm<FormValues>({
         resolver: zodResolver(formSchema),
         defaultValues: defaultVlaues,
     })
@@ -73,7 +74,7 @@ export const AccountForm =({
                   )}
                 />
                 <Button className="w-full" disabled={disabled}>
-                    {id? "Save changes" : "Create account"}
+                    {id ? "Save changes" : "Create account"}
                 </Button>
                 {!!id && 
                  (<Button 

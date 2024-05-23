@@ -12,5 +12,5 @@ export default function Home() {
         Add an account
       </Button>
     </div>
-  )
-}
+  );
+};
