@@ -2,6 +2,8 @@
 import { Loader2, Plus } from "lucide-react";
 
 import { useNewAccount } from "@/features/accounts/hooks/use-new-account";
+import { useBulkDeleteAccounts } from "@/features/accounts/api/use-bulk-delete";
+import { useGetAccounts } from "@/features/accounts/api/use-get-accounts";
 
 import { Button } from "@/components/ui/button";
 import { Skeleton } from "@/components/ui/skeleton";
@@ -14,13 +16,17 @@ import {
 } from "@/components/ui/card" 
 
 import { columns } from "./columns";
-import { useGetAccounts } from "@/features/accounts/api/use-get-accounts";
 
 
 const AccountsPage=()=>{
     const newAccount = useNewAccount();
+    const deleteAccounts = useBulkDeleteAccounts();
     const accountsQuery = useGetAccounts();
     const accounts = accountsQuery.data || [];
+
+    const isDisabled = 
+      accountsQuery.isLoading ||
+      deleteAccounts.isPending;
 
     if(accountsQuery.isLoading){
         return (
@@ -48,7 +54,7 @@ const AccountsPage=()=>{
                     </CardTitle>
                     <Button onClick={newAccount.onOpen} size="sm">
                         <Plus className="size-4 mr-2"/>
-                        Add new user
+                        Add new
                     </Button>
                 </CardHeader>
                 <CardContent>
@@ -56,8 +62,11 @@ const AccountsPage=()=>{
                     columns={columns} 
                     data={accounts} 
                     filterKey="email"
-                    onDelete={()=>{}}
-                    disabled={false}
+                    onDelete={(row)=>{
+                        const ids = row.map((r)=>r.original.id);
+                        deleteAccounts.mutate({ ids });
+                    }}
+                    disabled={isDisabled}
                   />
                 </CardContent>
             </Card>
