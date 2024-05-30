@@ -1,4 +1,4 @@
-import { Toaster, toast } from "sonner";
+import { toast } from "sonner";
 import { InferRequestType,InferResponseType } from "hono";
 import { useMutation,useQueryClient } from "@tanstack/react-query";
 
@@ -23,7 +23,7 @@ export const useCreateAccount =()=>{
             toast.success("Account created successfully");
             queryClient.invalidateQueries({queryKey: ["accounts "]})
         },
-        onError: (error)=>{
+        onError: ()=>{
             toast.error("Failed to create account")
         },
     });
