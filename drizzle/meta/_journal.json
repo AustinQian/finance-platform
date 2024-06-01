@@ -15,6 +15,13 @@
       "when": 1715637210932,
       "tag": "0001_cultured_bruce_banner",
       "breakpoints": true
+    },
+    {
+      "idx": 2,
+      "version": "5",
+      "when": 1717198322968,
+      "tag": "0002_lucky_captain_stacy",
+      "breakpoints": true
     }
   ]
 }

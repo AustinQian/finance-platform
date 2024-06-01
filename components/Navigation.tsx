@@ -32,8 +32,8 @@ const routes =[
         label:'Accounts',
     },
     {
-        href:'/catagories',
-        label:'Catagories',
+        href:'/categories',
+        label:'Categories',
     },
     {
         href:'/settings',
