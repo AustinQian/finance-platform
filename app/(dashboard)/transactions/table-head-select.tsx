@@ -20,6 +20,7 @@ const options = [
     "amount",
     "payee",
     "date",
+    "skip"
 ];
 
 export const TableHeadSelect = ({
