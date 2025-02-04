@@ -75,7 +75,7 @@ const app = new Hono()
     const { id } = c.req.valid("param");
 
     if(!id){
-      return c.json({error: "Id is required"}, 400);
+      return c.json({error: "Id is required"}, 400); 
     }
 
     if(!auth?.userId){
