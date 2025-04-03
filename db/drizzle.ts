@@ -1,8 +1,12 @@
-import { neon } from '@neondatabase/serverless';
-import { drizzle } from 'drizzle-orm/neon-http';
+import { drizzle } from 'drizzle-orm/node-postgres';
+import { Pool } from 'pg';
 
-// This configuration works with both Neon and Railway PostgreSQL
-const databaseUrl = process.env.DATABASE_URL!;
-export const sql = neon(databaseUrl.replace("postgresql://", "postgres://"));
-export const db = drizzle(sql);
+const pool = new Pool({
+  connectionString: process.env.DATABASE_URL!,
+  ssl: {
+    rejectUnauthorized: false // Allow connections to any PostgreSQL server
+  }
+});
+
+export const db = drizzle(pool);
 
