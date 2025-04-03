@@ -1,12 +1,5 @@
-import { drizzle } from 'drizzle-orm/node-postgres';
-import { Pool } from 'pg';
+import { sql } from '@vercel/postgres';
+import { drizzle } from 'drizzle-orm/vercel-postgres';
 
-const pool = new Pool({
-  connectionString: process.env.DATABASE_URL!,
-  ssl: {
-    rejectUnauthorized: false // Allow connections to any PostgreSQL server
-  }
-});
-
-export const db = drizzle(pool);
+export const db = drizzle(sql);
 
